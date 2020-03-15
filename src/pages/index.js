@@ -8,5 +8,6 @@ export default () => (
   	<div>
 	    <p>Blah blah blah blah</p>
     </div>
+    <div></div>
   </Layout>
 )
