@@ -4,6 +4,6 @@ import Title from '../components/title'
 
 export default () => (
   <Layout>
-    <Title text='Projects' />
+    <Title text='Contact' />
   </Layout>
 )

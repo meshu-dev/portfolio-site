@@ -1,5 +1,5 @@
 import React from "react"
-import styles from './title.module.scss';
+import styles from '../styles/components/title.module.scss';
 
 export default (props) => (
 	<section className={styles.container}>

@@ -1,14 +1,21 @@
 import React from "react"
-import styles from './layout.module.scss';
-import Header from './header'
-import Footer from './footer'
+import styles from '../styles/components/layout.module.scss';
+
+import { Container, Row, Col } from 'react-bootstrap';
+
+import Menu from './menu'
 
 export default ({children}) => (
 	<div className={styles.container}>
-		<Header />
-		{children}
-		<Footer>
-			Gatsby 2020
-		</Footer>
+		<Container>
+		  <Row>
+		  	<Col sm={3}>
+		  		<Menu />
+		  	</Col>
+		    <Col sm={9}>
+		    	{children}
+		    </Col>
+		  </Row>
+		</Container>
 	</div>
 )
