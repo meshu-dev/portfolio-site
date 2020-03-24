@@ -9,7 +9,9 @@ import Footer from './footer'
 export default ({ children }) => (
 	<div>
 		<header>
-			<Link to='/'>Mesh</Link>
+			<h1 class="display-4">
+				<Link to='/'>Mesh</Link>
+			</h1>
 		</header>
 		<Nav />
 		<Footer>

@@ -9,7 +9,7 @@ export default ({children}) => (
 	<div className={styles.container}>
 		<Container>
 		  <Row>
-		  	<Col sm={3}>
+		  	<Col id="leftcolumn" sm={3}>
 		  		<Menu />
 		  	</Col>
 		    <Col sm={9}>

@@ -1,25 +1,25 @@
 import React from "react"
-import { Jumbotron, Button } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import Layout from '../components/layout'
-import Title from '../components/title'
 
-export default ({data}) => (
+export default () => (
   <Layout>
-  	<Title text='Welcome' />
-  	<div>
-	    <p>Blah blah blah blah</p>
-    </div>
-    <div>{data.profile.id}</div>
-    <Jumbotron>
-      <h1>Title Text</h1>
-      <p>Subtitle Text</p>
-      <Button>Learn more</Button>
-    </Jumbotron>
+    <Container>
+      <Row>
+        <Col>
+          <h1>Intro</h1>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <h1>Latest projects</h1>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <h1>Latest blogs</h1>
+        </Col>
+      </Row>
+    </Container>
   </Layout>
 )
-
-export const query = graphql `query {
-  profile {
-    id
-  }
-}`

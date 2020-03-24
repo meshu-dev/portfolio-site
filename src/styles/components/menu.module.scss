@@ -1,0 +1,13 @@
+@import "../_variables";
+
+header {
+	h1 {
+		a {
+			color: $text-color-primary;
+		}
+
+		a:hover {
+			color: $text-color-primary;
+		}
+	}
+}
