@@ -3,7 +3,7 @@ import { Form, Button } from 'react-bootstrap';
 import APIUtils from '../common/APIUtils';
 import Layout from '../components/layout'
 import Title from '../components/title'
-import Captcha from '../components/captcha'
+import Recaptcha from 'react-google-invisible-recaptcha';
 
 export default class ContactPage extends React.Component {
 	state = {
@@ -25,10 +25,24 @@ export default class ContactPage extends React.Component {
 
 	handleSubmit = event => {
 		event.preventDefault()
-		this.sendEmail()
+		this.recaptcha.execute()
 	}
 
-	async sendEmail() {
+	onResolved = async () => {
+		let responseToken = this.recaptcha.getResponse()
+
+		console.log('responseToken: ', responseToken);
+
+		if (responseToken) {
+			let isSent = await this.sendEmail(responseToken)
+
+			this.setState({
+				['isSent']: isSent
+			})
+		}
+	}
+
+	sendEmail = async (captchaToken) => {
 		let apiUtils = new APIUtils(
 		  process.env.MAILER_API_URL
 		);
@@ -38,15 +52,12 @@ export default class ContactPage extends React.Component {
 		  {
 		  	name: this.state.name,
 		    email: this.state.email,
-		    message: this.state.message
+		    message: this.state.message,
+		    captchaToken: captchaToken
 		  }
 		);
 
-		if (result.isSent) {
-			this.setState({
-				['isSent']: result.isSent
-			})
-		}
+		return result.isSent ? true : false;
 	}
 
 	render() {
@@ -88,7 +99,10 @@ export default class ContactPage extends React.Component {
 							rows="10"
 							required />
 					</Form.Group>
-					<Captcha />
+			        <Recaptcha
+			          ref={ ref => this.recaptcha = ref }
+			          sitekey={ process.env.CAPTCHA_SITE_KEY }
+			          onResolved={ this.onResolved } />
 					<Button variant="primary" type="submit">
 					Send
 					</Button>
