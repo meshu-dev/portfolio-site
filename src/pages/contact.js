@@ -1,10 +1,13 @@
 import React from "react"
 import { Form, Button } from 'react-bootstrap';
-import Layout from "../components/layout"
+import APIUtils from '../common/APIUtils';
+import Layout from '../components/layout'
 import Title from '../components/title'
+import Captcha from '../components/captcha'
 
 export default class ContactPage extends React.Component {
 	state = {
+		isSent: false,
 		name: "",
 		email: "",
 		message: ""
@@ -22,45 +25,75 @@ export default class ContactPage extends React.Component {
 
 	handleSubmit = event => {
 		event.preventDefault()
-		alert(`Welcome ${this.state.name} ${this.state.email}!`)
+		this.sendEmail()
+	}
+
+	async sendEmail() {
+		let apiUtils = new APIUtils(
+		  process.env.MAILER_API_URL
+		);
+
+		let result = await apiUtils.post(
+		  `/send`,
+		  {
+		  	name: this.state.name,
+		    email: this.state.email,
+		    message: this.state.message
+		  }
+		);
+
+		if (result.isSent) {
+			this.setState({
+				['isSent']: result.isSent
+			})
+		}
 	}
 
 	render() {
-		return <Layout>
-			<Title text='Contact' />
-			<Form onSubmit={this.handleSubmit}>
-				<Form.Group controlId="exampleForm.ControlInput1">
-					<Form.Label>Name</Form.Label>
-					<Form.Control
-						type="text"
-						name="name"
-						value={this.state.name}
-						onChange={this.handleInputChange}
-						required />
-				</Form.Group>
-				<Form.Group controlId="exampleForm.ControlInput1">
-					<Form.Label>Email address</Form.Label>
-					<Form.Control
-						type="email"
-						name="email"
-						value={this.state.email}
-						onChange={this.handleInputChange}
-						required />
-				</Form.Group>
-				<Form.Group controlId="exampleForm.ControlTextarea1">
-					<Form.Label>Message</Form.Label>
-					<Form.Control
-						as="textarea"
-						name="message"
-						value={this.state.message}
-						onChange={this.handleInputChange}
-						rows="10"
-						required />
-				</Form.Group>
-				<Button variant="primary" type="submit">
-				Send
-				</Button>
-			</Form>
-		</Layout>
+		return this.state.isSent === true ? (
+			<Layout>
+				<Title text='Contact' />
+		  		<p>Message has been sent.</p>
+		  		<p>You will be contacted back shortly.</p>
+		  	</Layout>
+		) : (
+			<Layout>
+				<Title text='Contact' />
+				<Form onSubmit={this.handleSubmit}>
+					<Form.Group controlId="exampleForm.ControlInput1">
+						<Form.Label>Name</Form.Label>
+						<Form.Control
+							type="text"
+							name="name"
+							value={this.state.name}
+							onChange={this.handleInputChange}
+							required />
+					</Form.Group>
+					<Form.Group controlId="exampleForm.ControlInput1">
+						<Form.Label>Email address</Form.Label>
+						<Form.Control
+							type="email"
+							name="email"
+							value={this.state.email}
+							onChange={this.handleInputChange}
+							required />
+					</Form.Group>
+					<Form.Group controlId="exampleForm.ControlTextarea1">
+						<Form.Label>Message</Form.Label>
+						<Form.Control
+							as="textarea"
+							name="message"
+							value={this.state.message}
+							onChange={this.handleInputChange}
+							rows="10"
+							required />
+					</Form.Group>
+					<Captcha />
+					<Button variant="primary" type="submit">
+					Send
+					</Button>
+				</Form>
+			</Layout>
+		)
 	}
 }

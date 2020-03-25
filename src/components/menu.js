@@ -9,7 +9,7 @@ import Footer from './footer'
 export default ({ children }) => (
 	<div>
 		<header>
-			<h1 class="display-4">
+			<h1 className="display-4">
 				<Link to='/'>Mesh</Link>
 			</h1>
 		</header>
