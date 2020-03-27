@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, StaticQuery, graphql } from 'gatsby'
-import styles from '../styles/components/header.module.scss';
+import styles from './header.module.scss';
 
 const HeaderLink = props => (
 	<Link className={styles.link} to={props.to}>{props.text}</Link>

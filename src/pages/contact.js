@@ -1,16 +1,18 @@
 import React from "react"
-import { Form, Button } from 'react-bootstrap';
-import APIUtils from '../common/APIUtils';
-import Layout from '../components/layout'
-import Title from '../components/title'
+import { Form, Button, Spinner } from 'react-bootstrap';
 import Recaptcha from 'react-google-invisible-recaptcha';
+import APIUtils from '../common/APIUtils';
+import Layout from '../components/Layout/layout'
+import Title from '../components/Layout/title'
+
+import styles from '../styles/pages/contact.module.scss';
 
 export default class ContactPage extends React.Component {
 	state = {
 		isSent: false,
-		name: "",
-		email: "",
-		message: ""
+		name: '',
+		email: '',
+		message: ''
 	}
 
 	handleInputChange = event => {
@@ -30,8 +32,6 @@ export default class ContactPage extends React.Component {
 
 	onResolved = async () => {
 		let responseToken = this.recaptcha.getResponse()
-
-		console.log('responseToken: ', responseToken);
 
 		if (responseToken) {
 			let isSent = await this.sendEmail(responseToken)
@@ -57,7 +57,7 @@ export default class ContactPage extends React.Component {
 		  }
 		);
 
-		return result.isSent ? true : false;
+		return result && result.isSent ? true : false;
 	}
 
 	render() {
@@ -103,8 +103,18 @@ export default class ContactPage extends React.Component {
 			          ref={ ref => this.recaptcha = ref }
 			          sitekey={ process.env.CAPTCHA_SITE_KEY }
 			          onResolved={ this.onResolved } />
-					<Button variant="primary" type="submit">
-					Send
+					<Button id="contactbtn" variant="primary" type="submit">
+						<div className="loading">
+							<Spinner
+							  as="span"
+							  animation="border"
+							  size="sm"
+							  role="status"
+							  aria-hidden="true"
+							/>
+							<span className="loading-text">Loading...</span>
+						</div>
+						<span className="loading-text">Send</span>
 					</Button>
 				</Form>
 			</Layout>

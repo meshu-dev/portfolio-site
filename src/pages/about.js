@@ -1,7 +1,7 @@
 import React from "react"
 import { Jumbotron, Button } from 'react-bootstrap';
-import Layout from "../components/layout"
-import Title from '../components/title'
+import Layout from "../components/Layout/layout"
+import Title from '../components/Layout/title'
 
 export default ({ data }) => (
   <Layout>

@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import styles from '../styles/components/menu.module.scss';
 
-import Header from './header'
+import styles from './menu.module.scss';
+
+import Header from '../Header/header'
 import Nav from './nav'
-import Footer from './footer'
+import Footer from '../Footer/footer'
 
 export default ({ children }) => (
 	<div>
