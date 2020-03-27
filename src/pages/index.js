@@ -1,6 +1,8 @@
 import React from "react"
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import Layout from '../components/Layout/layout'
+import ProjectLatestList from '../components/Project/ProjectLatestList'
+import BlogLatestList from '../components/Blog/BlogLatestList'
 
 export default () => (
   <Layout>
@@ -17,25 +19,12 @@ export default () => (
       </Row>
       <Row>
         <Col>
-          <h1>Latest projects</h1>
-          <div>
-            <Card style={{ width: '18rem' }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
-              <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up the bulk of
-                  the card's content.
-                </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
-              </Card.Body>
-            </Card>
-          </div>
+          <ProjectLatestList />
         </Col>
       </Row>
       <Row>
         <Col>
-          <h1>Latest blogs</h1>
+          <BlogLatestList />
         </Col>
       </Row>
     </Container>
