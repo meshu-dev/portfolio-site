@@ -9,10 +9,11 @@ import styles from '../styles/pages/contact.module.scss';
 
 export default class ContactPage extends React.Component {
 	state = {
-		isSent: false,
 		name: '',
 		email: '',
-		message: ''
+		message: '',
+		isSent: false,
+		isLoading: false
 	}
 
 	handleInputChange = event => {
@@ -27,6 +28,10 @@ export default class ContactPage extends React.Component {
 
 	handleSubmit = event => {
 		event.preventDefault()
+
+		this.setState({
+			isLoading: true
+		})
 		this.recaptcha.execute()
 	}
 
@@ -37,7 +42,8 @@ export default class ContactPage extends React.Component {
 			let isSent = await this.sendEmail(responseToken)
 
 			this.setState({
-				isSent: isSent
+				isSent: isSent,
+				isLoading: false
 			})
 		}
 	}
@@ -103,18 +109,23 @@ export default class ContactPage extends React.Component {
 			          ref={ ref => this.recaptcha = ref }
 			          sitekey={ process.env.CAPTCHA_SITE_KEY }
 			          onResolved={ this.onResolved } />
-					<Button id="contactbtn" variant="primary" type="submit">
-						<div className="loading">
-							<Spinner
-							  as="span"
-							  animation="border"
-							  size="sm"
-							  role="status"
-							  aria-hidden="true"
-							/>
-							<span className={ styles.loadingText }>Loading...</span>
-						</div>
-						<span className={ styles.loadingText }>Send</span>
+					<Button id={ styles.contactbtn } variant="primary" type="submit">
+						{
+							this.state.isLoading === true
+							?
+							<div>
+								<Spinner
+								  as="span"
+								  animation="border"
+								  size="sm"
+								  role="status"
+								  aria-hidden="true"
+								/>
+								<span className={ styles.loadingText }>Loading...</span>
+							</div>
+							:
+							<span>Send</span>
+						}
 					</Button>
 				</Form>
 			</Layout>
