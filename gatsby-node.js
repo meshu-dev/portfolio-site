@@ -1,4 +1,5 @@
 const fetch = require(`node-fetch`)
+const path = require('path')
 
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
@@ -120,17 +121,15 @@ exports.createPages = ({ graphql, actions }) => {
         result.data.allProject.edges.forEach(({ node }) => {
           console.log('CREATE PAGE - PROJECT SLUG', node.fields.slug);
 
-          /*
           createPage({
              path: node.fields.slug,
-             component: path.resolve('./src/templates/post.js'),
+             component: path.resolve('./src/templates/project.js'),
              context: {
                slug: node.fields.slug
              }
-           }) */
+           })
         })
-
-         resolve()
+        resolve()
       })
    })
 }

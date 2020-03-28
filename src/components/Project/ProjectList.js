@@ -38,13 +38,16 @@ class ProjectList extends Component {
                   url
                   thumbUrl
                   createdAt
+                  fields {
+                    slug
+                  }
                 }
               }
             }
           }
         `}
         render = {data => (
-          <div id={styles.projectsList}>
+          <div id={ styles.projectsList }>
             <Title text='Projects' />
             <div id={styles.projectsListItems}>{ this.getData(data) }</div>
           </div>

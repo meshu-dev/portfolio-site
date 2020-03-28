@@ -2,10 +2,8 @@ import React from 'react'
 import Layout from '../components/Layout/layout'
 import ProjectList from '../components/Project/ProjectList'
 
-export default ({ location, projectId }) => (
+export default () => (
   <Layout>
-  	<div>{ location }</div>
-  	<div>{ projectId }</div>
     <ProjectList />
   </Layout>
 )

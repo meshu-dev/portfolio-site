@@ -37,7 +37,7 @@ export default class ContactPage extends React.Component {
 			let isSent = await this.sendEmail(responseToken)
 
 			this.setState({
-				['isSent']: isSent
+				isSent: isSent
 			})
 		}
 	}
