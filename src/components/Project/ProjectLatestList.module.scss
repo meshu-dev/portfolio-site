@@ -1,9 +1,16 @@
 #latest-projects {
-	display: flex;
-	flex-direction: row;
-	background-color: red;
+	#latest-projects-items {
+		display: flex;
+		flex-direction: row;
+		background-color: red;
 
-	a:nth-child(2) {
-		margin: 0 2.5rem;
+		a:nth-child(2) {
+			margin: 0 2.5rem;
+		}
+	}
+
+	#latestProjectsMoreLink {
+		margin-top: 1rem;
+		float: right;
 	}
 }

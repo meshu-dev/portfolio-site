@@ -1,0 +1,11 @@
+#projects-list {
+	#projects-list-items {
+		display: flex;
+		flex-direction: row;
+		background-color: red;
+
+		a {
+			flex-basis: 33%rem;
+		}
+	}
+}

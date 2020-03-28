@@ -44,7 +44,7 @@ class BlogLatestList extends Component {
           }
         `}
         render = {data => (
-          <div>
+          <div id={ styles.latestBlogs }>
             <h1>Latest blogs</h1>
             <div>{ this.getData(data) }</div>
           </div>

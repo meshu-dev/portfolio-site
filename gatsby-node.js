@@ -73,6 +73,7 @@ let addBlogNodes = async (createNode, createContentDigest) => {
   }
 }
 
+// Create node data from data pulled from Portfolio API
 exports.sourceNodes = async ({
   actions: { createNode },
   createContentDigest,
@@ -80,4 +81,56 @@ exports.sourceNodes = async ({
   await addProfileNode(createNode, createContentDigest)
   await addProjectNodes(createNode, createContentDigest)
   await addBlogNodes(createNode, createContentDigest)
+}
+
+// Generate a slug and set as a new field to project data
+exports.onCreateNode = ({ node, getNode, actions }) => {
+  if (node.internal.type === 'Project') {
+    const { createNodeField } = actions
+
+    let title = node.title,
+        slug = title.replace(' ', '-').toLowerCase()
+
+    createNodeField({
+       node,
+       name: 'slug',
+       value: slug
+    });
+  }
+}
+
+// Create static pages on projects based on slug
+exports.createPages = ({ graphql, actions }) => {
+   const { createPage } = actions
+
+   return new Promise(resolve => {
+      graphql(`
+      {
+        allProject {
+          edges {
+            node {
+              fields {
+                slug
+              }
+            }
+          }
+        }
+      }`
+      ).then(result => {
+        result.data.allProject.edges.forEach(({ node }) => {
+          console.log('CREATE PAGE - PROJECT SLUG', node.fields.slug);
+
+          /*
+          createPage({
+             path: node.fields.slug,
+             component: path.resolve('./src/templates/post.js'),
+             context: {
+               slug: node.fields.slug
+             }
+           }) */
+        })
+
+         resolve()
+      })
+   })
 }

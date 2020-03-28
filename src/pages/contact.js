@@ -112,9 +112,9 @@ export default class ContactPage extends React.Component {
 							  role="status"
 							  aria-hidden="true"
 							/>
-							<span className="loading-text">Loading...</span>
+							<span className={ styles.loadingText }>Loading...</span>
 						</div>
-						<span className="loading-text">Send</span>
+						<span className={ styles.loadingText }>Send</span>
 					</Button>
 				</Form>
 			</Layout>

@@ -1,8 +1,7 @@
 import React from 'react'
-import { Link } from 'gatsby'
 import Nav from 'react-bootstrap/Nav'
 
-import styles from './nav.module.scss';
+//import styles from './nav.module.scss';
 
 export default () => (
 	<nav>

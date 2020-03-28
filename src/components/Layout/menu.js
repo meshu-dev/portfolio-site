@@ -1,9 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 
-import styles from './menu.module.scss';
-
-import Header from '../Header/header'
+//import styles from './menu.module.scss';
 import Nav from './nav'
 import Footer from '../Footer/footer'
 

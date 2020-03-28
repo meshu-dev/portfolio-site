@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Link, StaticQuery, graphql } from 'gatsby'
-
+import { StaticQuery, graphql } from 'gatsby'
+import Title from '../Layout/title'
 import ProjectListRow from './ProjectListRow'
-import styles from './ProjectLatestList.module.scss';
+import styles from './ProjectList.module.scss';
 
-class ProjectLatestList extends Component {
+class ProjectList extends Component {
   getData(data) {
     let projects = data.allProject.edges
 
@@ -20,9 +20,6 @@ class ProjectLatestList extends Component {
 
     for (let project of projects) {
       project = project.node;
-
-      console.log('project', project);
-
       rows.push(<ProjectListRow key={ project.id } project={ project } />);
     }
     return rows;
@@ -33,27 +30,23 @@ class ProjectLatestList extends Component {
       <StaticQuery
         query = {graphql `
           query {
-            allProject(limit: 3, sort: {fields: createdAt, order: DESC}) {
+            allProject(limit: 9, sort: {fields: createdAt, order: DESC}) {
               edges {
                 node {
                   id
                   title
                   url
                   thumbUrl
-                  createdAt,
-                  fields {
-                    slug
-                  }
+                  createdAt
                 }
               }
             }
           }
         `}
         render = {data => (
-          <div id={styles.latestProjects}>
-            <h1>Latest projects</h1>
-            <div id={styles.latestProjectsItems}>{ this.getData(data) }</div>
-            <Link id={styles.latestProjectsMoreLink} to='/projects'>View All</Link>
+          <div id={styles.projectsList}>
+            <Title text='Projects' />
+            <div id={styles.projectsListItems}>{ this.getData(data) }</div>
           </div>
         )}
       />
@@ -61,4 +54,4 @@ class ProjectLatestList extends Component {
   }
 }
 
-export default ProjectLatestList;
+export default ProjectList;

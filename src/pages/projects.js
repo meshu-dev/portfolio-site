@@ -1,9 +1,11 @@
-import React from "react"
-import Layout from "../components/Layout/layout"
-import Title from '../components/Layout/title'
+import React from 'react'
+import Layout from '../components/Layout/layout'
+import ProjectList from '../components/Project/ProjectList'
 
-export default () => (
+export default ({ location, projectId }) => (
   <Layout>
-    <Title text='Projects' />
+  	<div>{ location }</div>
+  	<div>{ projectId }</div>
+    <ProjectList />
   </Layout>
 )

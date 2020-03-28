@@ -21,7 +21,7 @@ class ProjectListRow extends Component {
       let project = this.props.project;
 
       return (
-        <Link to={ `/project/${project.id}` } className={ styles.projectListItem }>
+        <Link to={ `/project/${project.id}` } state={{ fromFeed: true }} className={ styles.projectListItem }>
           <Card style={{ width: '12rem' }}>
             <Card.Img className={ styles.projectListImg } variant="top" src="https://cdn.oceanwp.org/wp-content/uploads/2017/07/portfolio-image.png" />
             <Card.Body>

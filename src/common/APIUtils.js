@@ -38,7 +38,6 @@ class APIUtils {
       }
 
       const json = await response.json();
-      let result;
 
       if (getHeaders === true) {
         return {

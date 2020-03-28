@@ -1,5 +1,5 @@
 import React from "react"
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import Layout from '../components/Layout/layout'
 import ProjectLatestList from '../components/Project/ProjectLatestList'
 import BlogLatestList from '../components/Blog/BlogLatestList'
