@@ -1,8 +1,12 @@
 .project-list-item {
-	background-color: yellow;
-
 	.project-list-img {
-		width: 190px;
-    	height: 150px;
+	    width: 318px;
+	    height: 200px;
+	}
+
+	.project-list-title {
+		margin-bottom: 2rem;
+		text-align: center;
+		font-size: 1.6rem;
 	}
 }

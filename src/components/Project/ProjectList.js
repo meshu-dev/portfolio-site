@@ -48,7 +48,6 @@ class ProjectList extends Component {
         `}
         render = {data => (
           <div id={ styles.projectsList }>
-            <Title text='Projects' />
             <div id={styles.projectsListItems}>{ this.getData(data) }</div>
           </div>
         )}

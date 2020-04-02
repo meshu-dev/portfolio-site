@@ -75,7 +75,6 @@ export default class ContactPage extends React.Component {
 		  	</Layout>
 		) : (
 			<Layout>
-				<Title text='Contact' />
 				<Form onSubmit={this.handleSubmit}>
 					<Form.Group controlId="exampleForm.ControlInput1">
 						<Form.Label>Name</Form.Label>

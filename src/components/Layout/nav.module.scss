@@ -1,3 +1,14 @@
-a {
-    padding-left: 0;
+#nav-menu {
+	margin-bottom: 3rem;
+	padding-left: .2rem;
+	
+	a {
+	    display: block;
+	    padding: 0.8rem 0;
+	    font-size: 1.3rem;
+	}
+	a:hover {
+		color: #663299 !important;
+		text-decoration: underline;
+	}
 }

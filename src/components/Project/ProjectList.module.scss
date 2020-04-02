@@ -2,7 +2,8 @@
 	#projects-list-items {
 		display: flex;
 		flex-direction: row;
-		background-color: red;
+		flex-wrap: wrap;
+		justify-content: space-between;
 
 		a {
 			flex-basis: 33%rem;

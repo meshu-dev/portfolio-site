@@ -34,12 +34,17 @@ let addProjectNodes = async (createNode, createContentDigest) => {
   let result = await fetch(`${process.env.PORTFOLIO_API_URL}/projects`)
   let resultData = await result.json()
 
+  const defaultThumbUrl = 'https://cdn.oceanwp.org/wp-content/uploads/2017/07/portfolio-image.png';
+
   for (let project of resultData) {
+
+    console.log('project', project);
+
     createNode({
       id: project.id,
       title: project.title,
       url: project.url,
-      thumbUrl: project.thumbUrl,
+      thumbUrl: project.images[0] ? project.images[0]['thumbUrl'] : defaultThumbUrl,
       createdAt: project.createdAt,
       updatedAt: project.updatedAt,
       parent: null,

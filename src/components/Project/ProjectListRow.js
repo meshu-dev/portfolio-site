@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'gatsby';
-import { Card } from 'react-bootstrap';
+import { Card, Image } from 'react-bootstrap';
 
 import styles from './ProjectListRow.module.scss';
 
@@ -22,12 +22,8 @@ class ProjectListRow extends Component {
 
       return (
         <Link to={ `/${project.fields.slug}` } state={{ fromFeed: true }} className={ styles.projectListItem }>
-          <Card style={{ width: '12rem' }}>
-            <Card.Img className={ styles.projectListImg } variant="top" src="https://cdn.oceanwp.org/wp-content/uploads/2017/07/portfolio-image.png" />
-            <Card.Body>
-              <Card.Title>{ project.title }</Card.Title>
-            </Card.Body>
-          </Card>
+          <Image src={ project.thumbUrl } className={ styles.projectListImg } rounded fluid />
+          <div className={ styles.projectListTitle }>{ project.title }</div>
         </Link>
       );
     } else {
