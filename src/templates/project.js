@@ -38,7 +38,13 @@ export default ({ data }) => {
             ?
             <div id={ styles.githubUrl }>
               <span>Github repository:</span>
-              <a href={ data.project.githubUrl } target="_blank">{ data.project.githubUrl }</a>
+              <a
+                href={ data.project.githubUrl }
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                { data.project.githubUrl }
+              </a>
             </div>
             :
             ''

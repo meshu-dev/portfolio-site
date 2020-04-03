@@ -16,15 +16,28 @@ export default ({ children }) => (
 		</header>
 		<Nav />
 		<div id={ styles.siteIcons }>
-			<a href="https://github.com/meshu-dev" target="_blank">
+			<a
+				href="https://github.com/meshu-dev"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
 				<Image src="/github-icon.png" />
 			</a>
-			<a href="https://www.linkedin.com/in/harmeshuppal" target="_blank">
+			<a
+				href="https://www.linkedin.com/in/harmeshuppal"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
 				<Image src="/linkedin-icon.png" />
 			</a>
 		</div>
 		<Footer>
-			Built with <a href="https://www.gatsbyjs.org" target="_blank">
+			Built with
+			<a
+				href="https://www.gatsbyjs.org"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
 				<Image src="/gatsby-logo.png" id={ styles.gatsbyLogo } />
 			</a>
 		</Footer>

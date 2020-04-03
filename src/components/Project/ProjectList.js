@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { StaticQuery, graphql } from 'gatsby'
-import Title from '../Layout/title'
 import ProjectListRow from './ProjectListRow'
 import styles from './ProjectList.module.scss';
 
