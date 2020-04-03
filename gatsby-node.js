@@ -6,9 +6,10 @@ require("dotenv").config({
 })
 
 let addProfileNode = async (createNode, createContentDigest) => {
-  let result = await fetch(`${process.env.PORTFOLIO_API_URL}/profiles?name=Mesh`)
-  let resultData = await result.json()
-  resultData = resultData[0]
+  let result = await fetch(`${process.env.PORTFOLIO_API_URL}/profiles?name=Mesh`),
+      resultData = await result.json();
+
+  resultData = resultData[0];
 
   createNode({
     id: resultData.id,
@@ -25,25 +26,26 @@ let addProfileNode = async (createNode, createContentDigest) => {
     children: [],
     internal: {
       type: `Profile`,
-      contentDigest: createContentDigest(resultData),
-    },
+      contentDigest: createContentDigest(resultData)
+    }
   })
 }
 
 let addProjectNodes = async (createNode, createContentDigest) => {
-  let result = await fetch(`${process.env.PORTFOLIO_API_URL}/projects`)
-  let resultData = await result.json()
+  let result = await fetch(`${process.env.PORTFOLIO_API_URL}/projects`),
+      resultData = await result.json();
 
-  const defaultThumbUrl = 'https://cdn.oceanwp.org/wp-content/uploads/2017/07/portfolio-image.png';
+  const defaultThumbUrl = 'https://cdn.oceanwp.org/wp-content/uploads/2017/07/portfolio-image.png',
+        defaultImageUrl = 'https://cdn.oceanwp.org/wp-content/uploads/2017/07/portfolio-image.png';
 
   for (let project of resultData) {
-
-    console.log('project', project);
-
     createNode({
       id: project.id,
       title: project.title,
-      url: project.url,
+      description: project.description,
+      technologies: project.technologies,
+      githubUrl: project.githubUrl,
+      imageUrl: project.images[0] ? project.images[0]['imageUrl'] : defaultImageUrl,
       thumbUrl: project.images[0] ? project.images[0]['thumbUrl'] : defaultThumbUrl,
       createdAt: project.createdAt,
       updatedAt: project.updatedAt,
@@ -51,15 +53,15 @@ let addProjectNodes = async (createNode, createContentDigest) => {
       children: [],
       internal: {
         type: `Project`,
-        contentDigest: createContentDigest(project),
-      },
+        contentDigest: createContentDigest(project)
+      }
     })
   }
 }
 
 let addBlogNodes = async (createNode, createContentDigest) => {
-  let result = await fetch(`${process.env.PORTFOLIO_API_URL}/blogs`)
-  let resultData = await result.json()
+  let result = await fetch(`${process.env.PORTFOLIO_API_URL}/blogs`),
+      resultData = await result.json()
 
   for (let blog of resultData) {
     createNode({
@@ -73,8 +75,8 @@ let addBlogNodes = async (createNode, createContentDigest) => {
       children: [],
       internal: {
         type: `Blog`,
-        contentDigest: createContentDigest(blog),
-      },
+        contentDigest: createContentDigest(blog)
+      }
     })
   }
 }
@@ -82,7 +84,7 @@ let addBlogNodes = async (createNode, createContentDigest) => {
 // Create node data from data pulled from Portfolio API
 exports.sourceNodes = async ({
   actions: { createNode },
-  createContentDigest,
+  createContentDigest
 }) => {
   await addProfileNode(createNode, createContentDigest)
   await addProjectNodes(createNode, createContentDigest)
@@ -92,7 +94,7 @@ exports.sourceNodes = async ({
 // Generate a slug and set as a new field to project data
 exports.onCreateNode = ({ node, getNode, actions }) => {
   if (node.internal.type === 'Project') {
-    const { createNodeField } = actions
+    const { createNodeField } = actions;
 
     let title = node.title,
         slug = title.replace(' ', '-').toLowerCase()
@@ -124,8 +126,6 @@ exports.createPages = ({ graphql, actions }) => {
       }`
       ).then(result => {
         result.data.allProject.edges.forEach(({ node }) => {
-          console.log('CREATE PAGE - PROJECT SLUG', node.fields.slug);
-
           createPage({
              path: node.fields.slug,
              component: path.resolve('./src/templates/project.js'),

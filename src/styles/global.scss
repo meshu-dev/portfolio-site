@@ -29,3 +29,26 @@ a:hover {
     top: 0;
     position: absolute;
 }
+
+a.active {
+    border-radius: .4rem;
+    background-color: #663299;
+    display: inline-block;
+    color: #FFF !important;
+    padding: 0;
+}
+
+a.active:hover {
+    cursor: default;
+    color: #FFF !important;
+    text-decoration: none !important;
+}
+
+.nav {
+    display: inline-block !important;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}

@@ -1,0 +1,27 @@
+#project-view {
+	img {
+		margin-bottom: 1rem;
+		width: 550px;
+	}
+	#technologies {
+		font-size: 1.5rem;
+		justify-content: flex-start;
+		display: flex;
+
+		span {
+		    margin-right: .5rem;
+		    font-weight: 600;
+		}
+	}
+	#github-url {
+		margin-top: .5rem;
+
+		span {
+			font-weight: bold;
+			margin-right: .5rem;
+		}
+	}
+	#description {
+		margin-top: .3rem;
+	}
+}

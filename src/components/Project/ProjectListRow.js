@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'gatsby';
-import { Card, Image } from 'react-bootstrap';
+import { Image } from 'react-bootstrap';
 
 import styles from './ProjectListRow.module.scss';
 

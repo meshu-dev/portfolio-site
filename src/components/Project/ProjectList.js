@@ -35,7 +35,6 @@ class ProjectList extends Component {
                 node {
                   id
                   title
-                  url
                   thumbUrl
                   createdAt
                   fields {
