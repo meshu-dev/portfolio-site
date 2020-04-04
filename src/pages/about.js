@@ -1,4 +1,5 @@
 import React from "react"
+import { graphql } from 'gatsby'
 import { Jumbotron, Button } from 'react-bootstrap';
 import Layout from "../components/Layout/layout"
 import Title from '../components/Layout/title'

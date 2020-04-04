@@ -1,0 +1,12 @@
+#projects-list {
+	#projects-list-items {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-between;
+
+		a {
+			flex-basis: 33%rem;
+		}
+	}
+}

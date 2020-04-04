@@ -32,7 +32,7 @@ a:hover {
 
 a.active {
     border-radius: .4rem;
-    background-color: #663299;
+    background-color: $color-primary;
     display: inline-block;
     color: #FFF !important;
     padding: 0;
@@ -49,6 +49,21 @@ a.active:hover {
 }
 
 .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
+    background-color: $color-primary;
+    border-color: $color-primary;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+    color: #fff;
+    background-color: $color-primary;
+    border-color: $color-primary;
+}
+
+.page-item.active .page-link {
+    background-color: $color-primary;
+    border-color: $color-primary;
 }

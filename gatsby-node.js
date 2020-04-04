@@ -107,12 +107,22 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   }
 }
 
-// Create static pages on projects based on slug
-exports.createPages = ({ graphql, actions }) => {
-   const { createPage } = actions
+// Functions used for creating project view pages
+let createProjectViewPages = (allProjects, createPage) => {
+  allProjects.data.allProject.edges.forEach(({ node }) => {
+    createPage({
+       path: node.fields.slug,
+       component: path.resolve('./src/templates/project.js'),
+       context: {
+         slug: node.fields.slug
+       }
+     })
+  })
+};
 
-   return new Promise(resolve => {
-      graphql(`
+let getAllProjectSlugs = async (graphql) => {
+  return await new Promise(resolve => {
+    graphql(`
       {
         allProject {
           edges {
@@ -124,17 +134,55 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
       }`
-      ).then(result => {
-        result.data.allProject.edges.forEach(({ node }) => {
-          createPage({
-             path: node.fields.slug,
-             component: path.resolve('./src/templates/project.js'),
-             context: {
-               slug: node.fields.slug
-             }
-           })
-        })
-        resolve()
-      })
-   })
+    ).then(result => {
+      resolve(result);
+    })
+  });
+};
+
+// Functions used for creating project list pages
+let getTotalPages = async (graphql) => {
+  let result = await new Promise(resolve => {
+    graphql(`
+      {
+        allProject {
+          totalCount
+        }
+      }`
+    ).then(result => {
+      resolve(result);
+    })
+  });
+
+  let totalProjects = result.data.allProject.totalCount;
+  return Math.ceil(totalProjects / process.env.ITEMS_PER_PAGE);
+};
+
+let createProjectListPages = (totalPages, createPage) => {
+  for (let page = 1; page <= totalPages; page++) {
+    let itemsPerPage = parseInt(process.env.ITEMS_PER_PAGE),
+        skip = page - 1;
+
+    if (skip > 0) skip *= itemsPerPage;
+
+    createPage({
+       path: `/projects/${page}`,
+       component: path.resolve('./src/templates/projects.js'),
+       context: {
+         skip: skip,
+         itemsPerPage: itemsPerPage
+       }
+     })
+  }
+};
+
+// Create static pages on projects based on slug
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions;
+
+  let projectSlugs = await getAllProjectSlugs(graphql);
+  createProjectViewPages(projectSlugs, createPage);
+
+  let totalPages = await getTotalPages(graphql);
+  createProjectListPages(totalPages, createPage);
 }
