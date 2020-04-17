@@ -69,6 +69,7 @@ export const query = graphql`
             slug
           }
           thumbUrl
+          githubUrl
           title
         }
       }
