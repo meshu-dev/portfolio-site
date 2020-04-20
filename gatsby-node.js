@@ -39,14 +39,16 @@ let addProjectNodes = async (createNode, createContentDigest) => {
         defaultImageUrl = 'https://cdn.oceanwp.org/wp-content/uploads/2017/07/portfolio-image.png';
 
   for (let project of resultData) {
+    let projectImages = project.images && project.images[0] ? project.images[0] : null;
+
     createNode({
       id: project.id,
       title: project.title,
       description: project.description,
       technologies: project.technologies,
       githubUrl: project.githubUrl,
-      imageUrl: project.images[0] ? project.images[0]['imageUrl'] : defaultImageUrl,
-      thumbUrl: project.images[0] ? project.images[0]['thumbUrl'] : defaultThumbUrl,
+      imageUrl: projectImages ? projectImages['imageUrl'] : defaultImageUrl,
+      thumbUrl: projectImages ? projectImages['thumbUrl'] : defaultThumbUrl,
       createdAt: project.createdAt,
       updatedAt: project.updatedAt,
       parent: null,
