@@ -1,8 +1,11 @@
 const fetch = require(`node-fetch`)
 const path = require('path')
 
+const activeEnv =
+  process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development'
+
 require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
+  path: `.env.${activeEnv}`,
 })
 
 let addProfileNode = async (createNode, createContentDigest) => {
@@ -39,13 +42,14 @@ let addProjectNodes = async (createNode, createContentDigest) => {
         defaultImageUrl = 'https://cdn.oceanwp.org/wp-content/uploads/2017/07/portfolio-image.png';
 
   for (let project of resultData) {
-    let projectImages = project.images && project.images[0] ? project.images[0] : null;
+    const projectImages = project.images && project.images[0] ? project.images[0] : null;
+    const technologies = project.technologies ? project.technologies : ['Code'];
 
     createNode({
       id: project.id,
       title: project.title,
       description: project.description,
-      technologies: project.technologies ? project.technologies : [],
+      technologies: technologies,
       githubUrl: project.githubUrl || '',
       imageUrl: projectImages ? projectImages['imageUrl'] : defaultImageUrl,
       thumbUrl: projectImages ? projectImages['thumbUrl'] : defaultThumbUrl,
