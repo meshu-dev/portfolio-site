@@ -45,7 +45,7 @@ let addProjectNodes = async (createNode, createContentDigest) => {
       id: project.id,
       title: project.title,
       description: project.description,
-      technologies: project.technologies || [],
+      technologies: project.technologies ? project.technologies : [],
       githubUrl: project.githubUrl || '',
       imageUrl: projectImages ? projectImages['imageUrl'] : defaultImageUrl,
       thumbUrl: projectImages ? projectImages['thumbUrl'] : defaultThumbUrl,
