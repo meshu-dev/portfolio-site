@@ -13,15 +13,20 @@
 		    font-weight: 600;
 		}
 	}
-	#github-url {
-		margin-top: .5rem;
+	#repositories {
+		margin-top: 1.5rem;
 
 		span {
 			font-weight: bold;
-			margin-right: .5rem;
+			margin-right: 1rem;
+		}
+
+		div {
+			display: flex;
+			flex-direction: column;
 		}
 	}
 	#description {
-		margin-top: .3rem;
+		margin-top: 1.5rem;
 	}
 }

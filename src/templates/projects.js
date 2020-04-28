@@ -68,9 +68,7 @@ export const query = graphql`
           fields {
             slug
           }
-          technologies
           thumbUrl
-          githubUrl
           title
         }
       }

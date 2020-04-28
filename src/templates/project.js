@@ -7,7 +7,7 @@ import { Image, Badge } from 'react-bootstrap';
 import styles from './project.module.scss';
 
 export default ({ data }) => {
-    let technologies = [];
+    const repositories = [], technologies = [];
 
     if (data.project.technologies) {
       for (let key in data.project.technologies) {
@@ -15,6 +15,22 @@ export default ({ data }) => {
 
         technologies.push(
           <Badge key={ key } variant="secondary">{ technology }</Badge>
+        );
+      }
+    }
+
+    if (data.project.repositories) {
+      for (let key in data.project.repositories) {
+        const repositoryUrl = data.project.repositories[key];
+
+        repositories.push(
+          <a
+            href={ repositoryUrl }
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            { repositoryUrl }
+          </a>
         );
       }
     }
@@ -34,17 +50,13 @@ export default ({ data }) => {
             ''
           }
           {
-            data.project.githubUrl
+            repositories.length > 0
             ?
-            <div id={ styles.githubUrl }>
-              <span>Github repository:</span>
-              <a
-                href={ data.project.githubUrl }
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                { data.project.githubUrl }
-              </a>
+            <div id={ styles.repositories }>
+              <span>Repositories</span>
+              <div>
+                { repositories }
+              </div>
             </div>
             :
             ''
@@ -64,7 +76,7 @@ export const query = graphql`
       title
       description
       technologies
-      githubUrl
+      repositories
       imageUrl
     }
   }
