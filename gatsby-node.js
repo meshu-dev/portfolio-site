@@ -17,7 +17,8 @@ let addProfileNode = async (createNode, createContentDigest) => {
   createNode({
     id: resultData.id,
     name: resultData.name,
-    jobTitle: resultData.jobTitle,
+    introLine1: resultData.introLine1,
+    introLine2: resultData.introLine2,
     bio: resultData.bio,
     githubUrl: resultData.githubUrl,
     linkedInUrl: resultData.linkedInUrl,

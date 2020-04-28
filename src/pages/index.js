@@ -4,29 +4,26 @@ import Layout from '../components/Layout/layout'
 import ProjectLatestList from '../components/Project/ProjectLatestList'
 import BlogLatestList from '../components/Blog/BlogLatestList'
 
-export default () => (
+import styles from '../styles/pages/index.module.scss';
+
+export default ({ data }) => (
   <Layout>
-    <Container>
-      <Row>
-        <Col>
-          <h1>Intro</h1>
-          <p>A card is a flexible and extensible content container. It includes options for 
-          headers and footers, a wide variety of content, contextual background colors, and 
-          powerful display options. If you’re familiar with Bootstrap 3, cards replace our 
-          old panels, wells, and thumbnails. Similar functionality to those components is 
-          available as modifier classes for cards.</p>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <ProjectLatestList />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <BlogLatestList />
-        </Col>
-      </Row>
+    <Container id={ styles.content }>
+      <div>
+        <div id={ styles.line1 }>{ data.allProfile.nodes[0].introLine1 }</div>
+        <div id={ styles.line2 }>{ data.allProfile.nodes[0].introLine2 }</div>
+      </div>
     </Container>
   </Layout>
 )
+
+export const query = graphql`
+  {
+    allProfile(filter: {name: {eq: "Mesh"}}) {
+      nodes {
+        introLine1
+        introLine2
+      }
+    }
+  }
+`
