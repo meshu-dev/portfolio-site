@@ -19,7 +19,7 @@ export default ({ data }) => {
   }
 
   let getData = (data) => {
-    let projects = data.allProject.edges
+    const projects = data.allProject.edges
 
     if (projects.length > 0) {
       return getProjects(projects)
@@ -28,8 +28,8 @@ export default ({ data }) => {
     }
   }
 
-  let urlPath = globalHistory.location.pathname,
-      pageNo = urlPath.replace('/projects/', '');
+  const urlPath = globalHistory.location.pathname
+  let pageNo = urlPath.replace('/projects/', '')
 
   pageNo = parseInt(pageNo);
 

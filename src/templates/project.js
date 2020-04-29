@@ -25,6 +25,7 @@ export default ({ data }) => {
 
         repositories.push(
           <a
+            key={ key }
             href={ repositoryUrl }
             target="_blank"
             rel="noopener noreferrer"
