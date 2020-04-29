@@ -1,7 +1,6 @@
 import React from "react"
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import Layout from '../components/Layout/layout'
-import ProjectLatestList from '../components/Project/ProjectLatestList'
 
 import styles from '../styles/pages/index.module.scss';
 
