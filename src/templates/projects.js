@@ -53,7 +53,7 @@ export default ({ data }) => {
       <div id={ styles.projectsList }>
         <div id={styles.projectsListItems}>{ getData(data) }</div>
       </div>
-      <Pagination>{ pages }</Pagination>
+      { totalPages > 1 ? <Pagination>{ pages }</Pagination> : '' }
     </Layout>
   )
 }

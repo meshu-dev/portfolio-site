@@ -15,8 +15,6 @@ class ProjectListRow extends Component {
   }
 
   render() {
-    console.log(this.props.project);
-
     if (this.props.project) {
       let project = this.props.project;
 
