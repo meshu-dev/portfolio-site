@@ -2,7 +2,6 @@ import React from "react"
 import { Container, Row, Col } from 'react-bootstrap';
 import Layout from '../components/Layout/layout'
 import ProjectLatestList from '../components/Project/ProjectLatestList'
-import BlogLatestList from '../components/Blog/BlogLatestList'
 
 import styles from '../styles/pages/index.module.scss';
 

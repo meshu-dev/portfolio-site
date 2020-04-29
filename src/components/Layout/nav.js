@@ -6,13 +6,15 @@ import styles from './nav.module.scss';
 
 class NavMenu extends Component {
   render() {
-  	let currentPath = globalHistory.location.pathname,
-  			activeKey = currentPath.replace(/\/$/, "");
+  	const currentPath = globalHistory.location.pathname
+  	let activeKey = currentPath.replace(/\/$/, "")
+
+    if (!activeKey) activeKey = '/'
 
     return (
 			<Nav id={ styles.navMenu } className="flex-column" activeKey={ activeKey }>
+        <div><Nav.Link href="/">About</Nav.Link></div>
         <div><Nav.Link href="/projects/1">Projects</Nav.Link></div>
-			  <div><Nav.Link href="/about">About</Nav.Link></div>
 			  <div><Nav.Link href="/contact">Contact</Nav.Link></div>
 			</Nav>
     );
