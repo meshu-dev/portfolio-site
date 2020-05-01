@@ -24,7 +24,11 @@ npm install -g gatsby-cli
 ### Mailer API
 -  Go to https://github.com/meshu-dev/mailer then follow install and setup instructions
 
-## Setup 
+## Setup
+- Install packages
+```
+npm install
+```
 - Copy the .env.example file to a new file named .env.development
 ```
 cp .env.example .env.development
