@@ -1,5 +1,18 @@
-const fetch = require(`node-fetch`)
 const path = require('path')
+const axios = require('axios')
+const https = require('https')
+
+/**
+ Was getting the following error althought these endpoints are public
+ so ssl check isn't required
+
+ Error:   FetchError: request to https://api.meshu.site/profiles?name=Mesh   failed, reason: unable to verify the first certificate
+*/
+const instance = axios.create({
+  httpsAgent: new https.Agent({  
+    rejectUnauthorized: false
+  })
+})
 
 const activeEnv =
   process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development'
@@ -9,8 +22,8 @@ require("dotenv").config({
 })
 
 let addProfileNode = async (createNode, createContentDigest) => {
-  let result = await fetch(`${process.env.PORTFOLIO_API_URL}/profiles?name=Mesh`),
-      resultData = await result.json();
+  let result = await instance.get(`${process.env.PORTFOLIO_API_URL}/profiles?name=Mesh`),
+      resultData = result.data
 
   resultData = resultData[0];
 
@@ -35,8 +48,8 @@ let addProfileNode = async (createNode, createContentDigest) => {
 }
 
 let addProjectNodes = async (createNode, createContentDigest) => {
-  let result = await fetch(`${process.env.PORTFOLIO_API_URL}/projects`),
-      resultData = await result.json();
+  let result = await instance.get(`${process.env.PORTFOLIO_API_URL}/projects`),
+      resultData = result.data;
 
   const defaultThumbUrl = 'https://cdn.oceanwp.org/wp-content/uploads/2017/07/portfolio-image.png',
         defaultImageUrl = 'https://cdn.oceanwp.org/wp-content/uploads/2017/07/portfolio-image.png';
@@ -66,8 +79,8 @@ let addProjectNodes = async (createNode, createContentDigest) => {
 }
 
 let addBlogNodes = async (createNode, createContentDigest) => {
-  let result = await fetch(`${process.env.PORTFOLIO_API_URL}/blogs`),
-      resultData = await result.json()
+  let result = await instance.get(`${process.env.PORTFOLIO_API_URL}/blogs`),
+      resultData = result.data
 
   for (let blog of resultData) {
     createNode({
