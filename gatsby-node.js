@@ -6,7 +6,8 @@ const https = require('https')
  Was getting the following error althought these endpoints are public
  so ssl check isn't required
 
- Error:   FetchError: request to https://api.meshu.site/profiles?name=Mesh   failed, reason: unable to verify the first certificate
+ Error: FetchError: request to https://api.meshu.site/profiles?name=Mesh failed,
+        reason: unable to verify the first certificate
 */
 const instance = axios.create({
   httpsAgent: new https.Agent({  
