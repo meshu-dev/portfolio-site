@@ -4,6 +4,7 @@ import Recaptcha from 'react-google-invisible-recaptcha';
 import APIUtils from '../common/APIUtils';
 import Layout from '../components/Layout/layout'
 import Title from '../components/Layout/title'
+import { Helmet } from 'react-helmet'
 
 import styles from '../styles/pages/contact.module.scss';
 
@@ -68,13 +69,13 @@ export default class ContactPage extends React.Component {
 
 	render() {
 		return this.state.isSent === true ? (
-			<Layout>
+			<Layout title="Portfolio | Contact">
 				<Title text='Contact' />
 		  		<p>Message has been sent.</p>
 		  		<p>You will be contacted back shortly.</p>
 		  	</Layout>
 		) : (
-			<Layout>
+			<Layout title="Portfolio | Contact">
 				<Form onSubmit={this.handleSubmit}>
 					<Form.Group controlId="exampleForm.ControlInput1">
 						<Form.Label>Name</Form.Label>

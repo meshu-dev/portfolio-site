@@ -37,7 +37,7 @@ export default ({ data }) => {
     }
 
     return (
-      <Layout>
+      <Layout title={ `Portfolio | ${data.project.title}` }>
         <div id={ styles.projectView }>
           <Title text={ data.project.title } />
           <Image src={ data.project.imageUrl } rounded fluid />

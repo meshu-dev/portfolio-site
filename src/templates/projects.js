@@ -49,7 +49,7 @@ export default ({ data }) => {
   }
 
   return (
-    <Layout>
+    <Layout title={ `Portfolio | Projects - Page ${pageNo}` }>
       <div id={ styles.projectsList }>
         <div id={styles.projectsListItems}>{ getData(data) }</div>
       </div>

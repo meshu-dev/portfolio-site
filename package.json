@@ -17,12 +17,14 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "gatsby": "^2.20.8",
+    "gatsby-plugin-react-helmet": "^3.3.1",
     "gatsby-plugin-sass": "^2.2.1",
     "node-sass": "^4.13.1",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.0",
     "react-dom": "^16.13.1",
-    "react-google-invisible-recaptcha": "^0.2.11"
+    "react-google-invisible-recaptcha": "^0.2.11",
+    "react-helmet": "^6.0.0"
   },
   "devDependencies": {
     "prettier": "^1.19.1"
