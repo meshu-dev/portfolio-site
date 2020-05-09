@@ -45,16 +45,6 @@ class Menu extends Component {
 						<Image src="/linkedin-icon.png" />
 					</a>
 				</div>
-				<Footer>
-					Built with
-					<a
-						href="https://www.gatsbyjs.org"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						<Image src="/gatsby-logo.png" id={ styles.gatsbyLogo } />
-					</a>
-				</Footer>
 			</div>
         )}
       />

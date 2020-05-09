@@ -12,16 +12,26 @@ header {
 	}
 }
 
-#gatsby-logo {
-	padding-left: .2rem;
-	width: 7rem;
-}
-
 #site-icons {
 	margin-bottom: 4rem;
 
 	img {
 		width: 3rem;
 		height: 3rem;
+	}
+}
+
+@media all and (max-width: 575px) {
+	header {
+		h1 {
+			text-align: center;
+		}
+	}
+
+	#site-icons {
+		text-align: center;
+		padding-bottom: 2rem;
+		border-bottom: 1px solid #F0F0F0;
+		margin-bottom: 2rem;
 	}
 }

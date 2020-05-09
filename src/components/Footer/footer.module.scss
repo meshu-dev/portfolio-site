@@ -1,0 +1,18 @@
+@import "~bootstrap/scss/bootstrap";
+
+#footer {
+	margin-top: 2em;
+    text-align: center;
+}
+
+#gatsby-logo {
+	padding-left: .2rem;
+	width: 7rem;
+}
+
+@media all and (max-width: 575px) {
+	#footer {
+		padding-top: 2em;
+	    border-top: 1px solid #F0F0F0;
+	}
+}

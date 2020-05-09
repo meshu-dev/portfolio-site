@@ -5,6 +5,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import styles from './layout.module.scss';
  
 import Menu from './menu'
+import Footer from '../Footer/footer'
 
 export default (props) => (
 	<div className={ styles.container }>
@@ -18,6 +19,7 @@ export default (props) => (
 		  	</Col>
 		    <Col sm={9}>
 		    	{ props.children }
+		    	<Footer />
 		    </Col>
 		  </Row>
 		</Container>
