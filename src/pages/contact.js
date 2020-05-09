@@ -4,7 +4,6 @@ import Recaptcha from 'react-google-invisible-recaptcha';
 import APIUtils from '../common/APIUtils';
 import Layout from '../components/Layout/layout'
 import Title from '../components/Layout/title'
-import { Helmet } from 'react-helmet'
 
 import styles from '../styles/pages/contact.module.scss';
 

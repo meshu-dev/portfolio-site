@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { globalHistory } from "@reach/router"
+import React, { Component } from 'react'
 import { Link } from 'gatsby'
 
 import styles from './nav.module.scss';

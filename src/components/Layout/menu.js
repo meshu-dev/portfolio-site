@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { StaticQuery, Link, graphql } from 'gatsby'
-import { Image } from 'react-bootstrap';
+import { Image } from 'react-bootstrap'
 
-import styles from './menu.module.scss';
+import styles from './menu.module.scss'
 
 import Nav from './nav'
-import Footer from '../Footer/footer'
 
 class Menu extends Component {
   render() {
