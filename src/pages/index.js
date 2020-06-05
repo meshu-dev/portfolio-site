@@ -1,6 +1,7 @@
 import React from "react"
 import { Container } from "react-bootstrap"
 import Layout from "../components/Layout/layout"
+import { graphql } from 'gatsby';
 
 import styles from "../styles/pages/index.module.scss"
 
