@@ -1,51 +1,40 @@
 class APIUtils {
-	constructor(apiUrl) {
-    this.apiUrl = apiUrl;
+  constructor(apiUrl) {
+    this.apiUrl = apiUrl
   }
 
-  async get(
-    url,
-    incHeaders = false
-  ) {
-    return this.request(url, 'GET', {}, incHeaders);
+  async get(url, incHeaders = false) {
+    return this.request(url, "GET", {}, incHeaders)
   }
 
   async post(url, params = {}) {
     let fetchData = {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(params)
-    };
-    return this.request(url, 'POST', fetchData);
+      body: JSON.stringify(params),
+    }
+    return this.request(url, "POST", fetchData)
   }
 
-  async request(
-    url,
-    method = 'GET',
-    fetchData = {},
-    getHeaders = false
-  ) {
+  async request(url, method = "GET", fetchData = {}, getHeaders = false) {
     try {
-      const response = await fetch(
-        this.apiUrl + url,
-        fetchData
-      );
+      const response = await fetch(this.apiUrl + url, fetchData)
 
       if (!response.ok) {
-        throw Error(response.statusText);
+        throw Error(response.statusText)
       }
 
-      const json = await response.json();
+      const json = await response.json()
 
       if (getHeaders === true) {
         return {
-          'headers': this.getHeaders(response),
-          'data': json
+          headers: this.getHeaders(response),
+          data: json,
         }
       } else {
-        return json;
+        return json
       }
     } catch (error) {
       //console.log(error);
@@ -53,13 +42,13 @@ class APIUtils {
   }
 
   getHeaders(response) {
-    let headers = {};
+    let headers = {}
 
     for (let header of response.headers) {
-      headers[header[0]] = header[1];
+      headers[header[0]] = header[1]
     }
-    return headers;
+    return headers
   }
 }
 
-export default APIUtils;
+export default APIUtils

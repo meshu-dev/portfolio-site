@@ -1,24 +1,24 @@
-import React from 'react';
+import React from "react"
 import { globalHistory } from "@reach/router"
-import { graphql } from 'gatsby'
-import Layout from '../components/Layout/layout'
-import ProjectListRow from '../components/Project/ProjectListRow'
-import { Pagination } from 'react-bootstrap';
+import { graphql } from "gatsby"
+import Layout from "../components/Layout/layout"
+import ProjectListRow from "../components/Project/ProjectListRow"
+import { Pagination } from "react-bootstrap"
 
-import styles from './projects.module.scss';
+import styles from "./projects.module.scss"
 
 export default ({ data }) => {
-  let getProjects = (projects) => {
-    let rows = [];
+  let getProjects = projects => {
+    let rows = []
 
     for (let project of projects) {
-      project = project.node;
-      rows.push(<ProjectListRow key={ project.id } project={ project } />);
+      project = project.node
+      rows.push(<ProjectListRow key={project.id} project={project} />)
     }
-    return rows;
+    return rows
   }
 
-  let getData = (data) => {
+  let getData = data => {
     const projects = data.allProject.edges
 
     if (projects.length > 0) {
@@ -29,38 +29,43 @@ export default ({ data }) => {
   }
 
   const urlPath = globalHistory.location.pathname
-  let pageNo = urlPath.replace('/projects/', '')
+  let pageNo = urlPath.replace("/projects/", "")
 
-  pageNo = parseInt(pageNo);
+  pageNo = parseInt(pageNo)
 
   let totalProjects = data.allProject.totalCount,
-      totalPages =  Math.ceil(totalProjects / process.env.ITEMS_PER_PAGE),
-      pages = [];
+    totalPages = Math.ceil(totalProjects / process.env.ITEMS_PER_PAGE),
+    pages = []
 
   for (let page = 1; page <= totalPages; page++) {
     pages.push(
       <Pagination.Item
-        key={ page }
-        active={ page === pageNo }
-        href={ `/projects/${page}` }>
-        { page }
+        key={page}
+        active={page === pageNo}
+        href={`/projects/${page}`}
+      >
+        {page}
       </Pagination.Item>
-    );
+    )
   }
 
   return (
-    <Layout title={ `Portfolio | Projects - Page ${pageNo}` }>
-      <div id={ styles.projectsList }>
-        <div id={styles.projectsListItems}>{ getData(data) }</div>
+    <Layout title={`Portfolio | Projects - Page ${pageNo}`}>
+      <div id={styles.projectsList}>
+        <div id={styles.projectsListItems}>{getData(data)}</div>
       </div>
-      { totalPages > 1 ? <Pagination>{ pages }</Pagination> : '' }
+      {totalPages > 1 ? <Pagination>{pages}</Pagination> : ""}
     </Layout>
   )
 }
 
 export const query = graphql`
   query($skip: Int!, $itemsPerPage: Int!) {
-    allProject(sort: {order: DESC, fields: createdAt}, limit: $itemsPerPage, skip: $skip) {
+    allProject(
+      sort: { order: DESC, fields: createdAt }
+      limit: $itemsPerPage
+      skip: $skip
+    ) {
       totalCount
       edges {
         node {
