@@ -72,7 +72,7 @@ npm run develop
 - Build static files
 
 ```
-npmn run build
+npm run build
 ```
 
 - Run website with static files
